@@ -3,23 +3,19 @@ import React from 'react';
 import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, Center } from '@chakra-ui/react';
 import ItemCount from './ItemCount';
 
-const ItemDetail = ({ p }) => {
-    // const { id } = useParams();
-    // const filteredProducts = productos.filter((producto) => producto.id == id)
-
+const ItemDetail = ({ id, name, brand, category, price, image }) => {
     return (
-        <div key={p.id}>
+        <div key={id}>
             <Center p='1rem'>
-
                 <Card>
                     <CardHeader>
-                        <Heading size='md'>{p.name}</Heading>
+                        <Heading size='md'>{name}</Heading>
                     </CardHeader>
                     <CardBody>
-                        <Text>{p.brand}</Text>
-                        <Text>{p.category}</Text>
-                        <Text>{p.price}</Text>
-                        <Text>{p.image}</Text>
+                        <Text>{brand}</Text>
+                        <Text>{category}</Text>
+                        <Text>{price}</Text>
+                        <Text>{image}</Text>
                     </CardBody>
                     <CardFooter>
                         <ItemCount />
