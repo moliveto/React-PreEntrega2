@@ -3,16 +3,18 @@ import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button } from '@
 import { Link } from 'react-router-dom'
 
 
-const Item = ({ nombre, description, id, category }) => {
+const Item = ({ id, name, brand, category, price, image }) => {
     return (
         <>
             <Card>
                 <CardHeader>
-                    <Heading size='md'>{nombre}</Heading>
+                    <Heading size='md'>{name}</Heading>
                 </CardHeader>
                 <CardBody>
-                    <Text>{description}</Text>
+                    <Text>{brand}</Text>
                     <Text>{category}</Text>
+                    <Text>{price}</Text>
+                    <Text>{image}</Text>
                 </CardBody>
                 <CardFooter>
                     <Button>

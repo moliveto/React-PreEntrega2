@@ -1,39 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import ItemDetail from './ItemDetail'
+import axios from 'axios';
+import { useParams } from 'react-router-dom'
 
 const ItemDetailContainer = () => {
+    const { id } = useParams();
 
-    const productos = [
-        { id: 1, nombre: "Producto A", description: "Descripcion de Producto A", stock: 5, category: "cat1" },
-        { id: 2, nombre: "Producto B", description: "Descripcion de Producto B", stock: 10, category: "cat2" },
-        { id: 3, nombre: "Producto C", description: "Descripcion de Producto C", stock: 20, category: "cat3" },
-        { id: 4, nombre: "Producto D", description: "Descripcion de Producto D", stock: 15, category: "cat1" },
-        { id: 5, nombre: "Producto E", description: "Descripcion de Producto E", stock: 25, category: "cat1" },
-        { id: 6, nombre: "Producto F", description: "Descripcion de Producto F", stock: 30, category: "cat3" },
-
-    ]
-
-    const getProductos = new Promise((resolve, reject) => {
-        if (productos.length > 0) {
-            setTimeout(() => {
-                resolve(productos)
-            }, 2000)
-        } else {
-            reject(new Error("No hay datos"))
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/products.json');
+                const jsonData = await response.json();
+                setProducts(jsonData);
+                console.log(products)
+                // const response = await axios.get('/products.json');
+                // setProducts(response.data);
+            } catch (error) {
+                console.error(error)
+            }
         }
-    })
 
-    getProductos
-        .then((res) => {
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        fetchProducts()
+    }, [])
+
+    console.log(id)
+    console.log(products)
+    const product = products.find((p) => p.id === id)
+    console.log(product)
 
     return (
         <>
             <ItemDetail
-                productos={productos}
+                product={product}
             />
         </>
     )

@@ -9,9 +9,11 @@ const ItemList = ({ productos }) => {
                     <Item
                         key={p.id}
                         id={p.id}
-                        nombre={p.nombre}
-                        description={p.description}
-                        stock={p.stock}
+                        name={p.name}
+                        brand={p.brand}
+                        category={p.category}
+                        price={p.price}
+                        image={p.image}
                     />
                 )
             })
@@ -21,4 +23,5 @@ const ItemList = ({ productos }) => {
     )
 }
 
-export default React.memo(ItemList)
+//export default React.memo(ItemList)
+export default ItemList;

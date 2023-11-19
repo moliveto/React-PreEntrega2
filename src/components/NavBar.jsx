@@ -7,6 +7,11 @@ import { Link } from 'react-router-dom'
 
 
 const NavBar = () => {
+    const cat1 = 'Almacen';
+    const cat2 = 'Bebidas';
+    const cat3 = 'Farmacia';
+    const categories = [cat1, cat2, cat3]
+
     return (
         <Flex>
             <Box p='4'>
@@ -21,8 +26,26 @@ const NavBar = () => {
                         Categories
                     </MenuButton>
                     <MenuList>
-                        <MenuItem>
-                            <Link to={`/category/${'cat1'}`}>
+                        {categories.map((category) => (
+                            <MenuItem key={category} as={Link} to={`/category/${category}`}>
+                                {category}
+                            </MenuItem>
+                        ))}
+                        {/* {
+                            categories.map((cat) => {
+                                {
+                                    console.log(`/category/${cat}`)
+                                    console.log(`Category ${cat}`)
+                                }
+                                <MenuItem>
+                                    <Link to={`/category/${cat}`}>
+                                        {`Category ${cat}`}
+                                    </Link>
+                                </MenuItem>
+                            })
+                        } */}
+                        {/* <MenuItem>
+                            <Link to={`/category/${cat1}`}>
                                 Category A
                             </Link>
                         </MenuItem>
@@ -35,7 +58,7 @@ const NavBar = () => {
                             <Link to={`/category/${'cat3'}`}>
                                 Category C
                             </Link>
-                        </MenuItem>
+                        </MenuItem> */}
                     </MenuList>
                 </Menu>
             </Box>
@@ -46,7 +69,7 @@ const NavBar = () => {
                     <CartWidget />
                 </Link>
             </Box>
-        </Flex>
+        </Flex >
     )
 }
 
